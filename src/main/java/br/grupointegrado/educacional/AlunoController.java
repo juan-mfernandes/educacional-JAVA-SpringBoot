@@ -37,4 +37,27 @@ public class AlunoController {
 
         return this.repository.save(aluno);
     }
+
+    @PutMapping("/{id}")
+    public Aluno update(@PathVariable Integer id, @RequestBody AlunoRequestDTO dto) {
+        Aluno aluno = this.repository.findById(id).
+                orElseThrow( () -> new IllegalArgumentException("Aluno não encontrado."));
+
+        aluno.setNome(dto.nome());
+        aluno.setEmail(dto.email());
+        aluno.setData_nascimento(dto.data_nascimento());
+        aluno.setMatricula(dto.matricula());
+
+        return this.repository.save(aluno);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id) {
+        Aluno aluno = this.repository.findById(id).
+                orElseThrow( () -> new IllegalArgumentException("Aluno não encontrado."));
+
+        this.repository.delete(aluno);
+    }
 }
+
