@@ -2,6 +2,8 @@ package br.grupointegrado.educacional.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "alunos")
 public class Aluno {
@@ -14,6 +16,8 @@ public class Aluno {
     private String email;
     @Column
     private String matricula;
+    @Column
+    private Date data_nascimento;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,5 +51,13 @@ public class Aluno {
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public Date getData_nascimento() {
+        return data_nascimento;
+    }
+
+    public void setData_nascimento(Date data_nascimento) {
+        this.data_nascimento = data_nascimento;
     }
 }
