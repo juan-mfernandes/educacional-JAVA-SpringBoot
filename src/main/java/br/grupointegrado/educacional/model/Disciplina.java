@@ -1,6 +1,9 @@
 package br.grupointegrado.educacional.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "disciplinas")
@@ -23,6 +26,10 @@ public class Disciplina {
     @ManyToOne
     @JoinColumn(name = "professor_id", referencedColumnName = "id")
     private Professor professor;
+
+    @OneToMany(mappedBy = "disciplina")
+    @JsonIgnoreProperties("disciplina")
+    private List<Nota> notas;
 
     public Integer getId() {
         return id;

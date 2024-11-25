@@ -14,7 +14,7 @@ public class Aluno {
     private String nome;
     @Column
     private String email;
-    @Column
+    @Column(unique = true)
     private String matricula;
     @Column
     private Date data_nascimento;
