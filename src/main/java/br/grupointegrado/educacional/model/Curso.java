@@ -26,6 +26,10 @@ public class Curso {
     @JsonIgnoreProperties("curso") // ignora o atributo "curso" para evitar looping na resposta http;
     private List<Turma> turma;
 
+    @OneToMany(mappedBy = "curso")
+    @JsonIgnoreProperties("curso")
+    private List<Disciplina> disciplina;
+
     public Integer getId() {
         return id;
     }
