@@ -1,4 +1,4 @@
-package br.grupointegrado.educacional;
+package br.grupointegrado.educacional.controllers;
 
 import br.grupointegrado.educacional.dto.AlunoRequestDTO;
 import br.grupointegrado.educacional.model.Aluno;

@@ -13,10 +13,10 @@ public class Disciplina {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
+    @Column(precision = 100)
     private String nome;
 
-    @Column
+    @Column(precision = 20)
     private String codigo;
 
     @ManyToOne
@@ -30,6 +30,22 @@ public class Disciplina {
     @OneToMany(mappedBy = "disciplina")
     @JsonIgnoreProperties("disciplina")
     private List<Nota> notas;
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    public List<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(List<Nota> notas) {
+        this.notas = notas;
+    }
 
     public Integer getId() {
         return id;

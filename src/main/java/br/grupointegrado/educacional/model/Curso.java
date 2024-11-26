@@ -34,6 +34,22 @@ public class Curso {
         return id;
     }
 
+    public List<Turma> getTurma() {
+        return turma;
+    }
+
+    public void setTurma(List<Turma> turma) {
+        this.turma = turma;
+    }
+
+    public List<Disciplina> getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(List<Disciplina> disciplina) {
+        this.disciplina = disciplina;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

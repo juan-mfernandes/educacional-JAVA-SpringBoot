@@ -29,6 +29,14 @@ public class Professor {
     @JsonIgnoreProperties("professor")
     private List<Disciplina> discplinas;
 
+    public List<Disciplina> getDiscplinas() {
+        return discplinas;
+    }
+
+    public void setDiscplinas(List<Disciplina> discplinas) {
+        this.discplinas = discplinas;
+    }
+
     public Integer getId() {
         return id;
     }
