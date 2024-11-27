@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/matriculas")
+@RequestMapping("/api/turmas")
 public class TurmaController {
 
     @Autowired

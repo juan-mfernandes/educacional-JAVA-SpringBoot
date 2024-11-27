@@ -2,6 +2,7 @@ package br.grupointegrado.educacional.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,7 @@ public class Aluno {
     @Column(unique = true)
     private String matricula;
     @Column
-    private Date data_nascimento;
+    private LocalDate data_nascimento;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,11 +54,11 @@ public class Aluno {
         this.matricula = matricula;
     }
 
-    public Date getData_nascimento() {
+    public LocalDate getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(Date data_nascimento) {
+    public void setData_nascimento(LocalDate data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 }

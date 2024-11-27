@@ -114,7 +114,7 @@ public class DisciplinaController {
     }
 
     // Adicionar professor na disciplina
-    @PostMapping("/{id}/add-professor/{id}")
+    @PostMapping("/{id}/add-professor/{professorId}")
     public ResponseEntity<Disciplina> addProfessor(@PathVariable Integer id, @PathVariable Integer professorId) {
         Disciplina disciplina = this.disciplinaRepository.findById(id).
                 orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Id da disciplina não encontrado!"));
