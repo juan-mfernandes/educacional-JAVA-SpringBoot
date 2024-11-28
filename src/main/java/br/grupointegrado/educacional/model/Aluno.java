@@ -1,6 +1,8 @@
 package br.grupointegrado.educacional.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -11,12 +13,17 @@ public class Aluno {
 
     @Column
     private int id;
-    @Column
+
+    @Column(precision = 100)
     private String nome;
+
+    @Email
     @Column
     private String email;
-    @Column(unique = true)
+
+    @Column(unique = true, precision = 20)
     private String matricula;
+
     @Column
     private LocalDate data_nascimento;
 

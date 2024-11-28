@@ -30,10 +30,10 @@ public class AlunoController {
     public Aluno save(@RequestBody AlunoRequestDTO dto) {
         Aluno aluno = new Aluno();
 
-        aluno.setNome(dto.nome());
-        aluno.setEmail(dto.email());
-        aluno.setData_nascimento(dto.data_nascimento());
-        aluno.setMatricula(dto.matricula());
+        aluno.setNome(dto.getNome());
+        aluno.setEmail(dto.getEmail());
+        aluno.setData_nascimento(dto.getDataNascimento());
+        aluno.setMatricula(dto.getMatricula());
 
         return this.repository.save(aluno);
     }
@@ -43,10 +43,10 @@ public class AlunoController {
         Aluno aluno = this.repository.findById(id).
                 orElseThrow( () -> new IllegalArgumentException("Aluno não encontrado."));
 
-        aluno.setNome(dto.nome());
-        aluno.setEmail(dto.email());
-        aluno.setData_nascimento(dto.data_nascimento());
-        aluno.setMatricula(dto.matricula());
+        aluno.setNome(dto.getNome());
+        aluno.setEmail(dto.getEmail());
+        aluno.setData_nascimento(dto.getDataNascimento());
+        aluno.setMatricula(dto.getMatricula());
 
         return this.repository.save(aluno);
 

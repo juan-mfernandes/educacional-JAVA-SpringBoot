@@ -1,9 +1,11 @@
 package br.grupointegrado.educacional.controllers;
 
+import br.grupointegrado.educacional.dto.TurmaRequestDTO;
 import br.grupointegrado.educacional.model.Curso;
 import br.grupointegrado.educacional.model.Turma;
 import br.grupointegrado.educacional.repository.CursoRepository;
 import br.grupointegrado.educacional.repository.TurmaRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,14 +38,14 @@ public class TurmaController {
     }
 
     @PostMapping
-    public ResponseEntity<Turma> insert(@RequestBody Turma data){
-        Curso curso = this.cursoRepository.findById(data.getCurso().getId()).
+    public ResponseEntity<Turma> insert(@RequestBody @Valid TurmaRequestDTO data){
+        Curso curso = this.cursoRepository.findById(data.getCursoId()).
                 orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Id do curso não encontrado!"));
 
         yearAndSemesterValidator(data);
 
         Turma turma = new Turma();
-        turma.setAno(data.getAno());
+        turma.setAno(data.getAnoLetivo());
         turma.setSemestre(data.getSemestre());
         turma.setCurso(curso);
         Turma savedTurma= turmaRepository.save(turma);
@@ -53,23 +55,23 @@ public class TurmaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Turma> update(@PathVariable Integer id, @RequestBody Turma data){
+    public ResponseEntity<Turma> update(@PathVariable Integer id, @RequestBody TurmaRequestDTO data){
         Turma turma = this.turmaRepository.findById(id).
                 orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Id da turma não encontrado!"));
 
         yearAndSemesterValidator(data);
 
-        turma.setAno(data.getAno());
+        turma.setAno(data.getAnoLetivo());
         turma.setSemestre(data.getSemestre());
         Turma savedTurma= turmaRepository.save(turma);
 
         return ResponseEntity.status(HttpStatus.OK).body(savedTurma);
     }
 
-    private void yearAndSemesterValidator(Turma data) {
+    private void yearAndSemesterValidator(TurmaRequestDTO data) {
         Integer currentYear = LocalDate.now().getYear();
 
-        if (data.getAno() < currentYear) {
+        if (data.getAnoLetivo() < currentYear) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Insira um ano válido!");
         }
 

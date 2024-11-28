@@ -1,6 +1,9 @@
 package br.grupointegrado.educacional.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,7 +13,7 @@ import java.util.List;
 public class Disciplina {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(precision = 100)
@@ -21,14 +24,16 @@ public class Disciplina {
 
     @ManyToOne
     @JoinColumn(name = "curso_id", referencedColumnName = "id")
+    @JsonBackReference
     private Curso curso;
 
     @ManyToOne
     @JoinColumn(name = "professor_id", referencedColumnName = "id")
+    @JsonBackReference
     private Professor professor;
 
     @OneToMany(mappedBy = "disciplina")
-    @JsonIgnoreProperties("disciplina")
+    @JsonManagedReference
     private List<Nota> notas;
 
     public Professor getProfessor() {

@@ -1,6 +1,8 @@
 package br.grupointegrado.educacional.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -23,31 +25,33 @@ public class Curso {
     private Integer carga_horaria;
 
     @OneToMany(mappedBy = "curso") // especifica como o atributo "curso" foi mapeado na tabela que possui o relacionamento forte, neste caso, a tabela/classe "Turma";
-    @JsonIgnoreProperties("curso") // ignora o atributo "curso" para evitar looping na resposta http;
-    private List<Turma> turma;
+    @JsonManagedReference // ignora o atributo "curso" para evitar looping na resposta http;
+    @JsonIgnore
+    private List<Turma> turmas;
 
     @OneToMany(mappedBy = "curso")
-    @JsonIgnoreProperties("curso")
-    private List<Disciplina> disciplina;
+    @JsonManagedReference
+    @JsonIgnore
+    private List<Disciplina> disciplinas;
 
     public Integer getId() {
         return id;
     }
 
     public List<Turma> getTurma() {
-        return turma;
+        return turmas;
     }
 
     public void setTurma(List<Turma> turma) {
-        this.turma = turma;
+        this.turmas = turma;
     }
 
     public List<Disciplina> getDisciplina() {
-        return disciplina;
+        return disciplinas;
     }
 
     public void setDisciplina(List<Disciplina> disciplina) {
-        this.disciplina = disciplina;
+        this.disciplinas = disciplina;
     }
 
     public void setId(Integer id) {

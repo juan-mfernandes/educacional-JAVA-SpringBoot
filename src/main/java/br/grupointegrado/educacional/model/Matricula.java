@@ -1,5 +1,7 @@
 package br.grupointegrado.educacional.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,10 +14,12 @@ public class Matricula {
 
     @ManyToOne
     @JoinColumn(name = "aluno_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Aluno aluno;
 
     @ManyToOne
     @JoinColumn(name = "turma_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Turma turma;
 
     public Integer getId() {

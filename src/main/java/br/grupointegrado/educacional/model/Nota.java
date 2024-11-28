@@ -1,5 +1,6 @@
 package br.grupointegrado.educacional.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -15,10 +16,12 @@ public class Nota {
 
     @ManyToOne
     @JoinColumn(name = "matricula_id", referencedColumnName = "id")
+
     private Matricula matricula;
 
     @ManyToOne
-    @JoinColumn(name = "diciplina_id", referencedColumnName = "id")
+    @JoinColumn(name = "disciplina_id", referencedColumnName = "id")
+    @JsonBackReference
     private Disciplina disciplina;
 
     @Column(precision = 5, scale = 2)

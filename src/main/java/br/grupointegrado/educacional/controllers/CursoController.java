@@ -2,9 +2,7 @@ package br.grupointegrado.educacional.controllers;
 
 import br.grupointegrado.educacional.dto.CursoRequestDTO;
 import br.grupointegrado.educacional.model.Curso;
-import br.grupointegrado.educacional.model.Disciplina;
 import br.grupointegrado.educacional.repository.CursoRepository;
-import br.grupointegrado.educacional.repository.DisciplinaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

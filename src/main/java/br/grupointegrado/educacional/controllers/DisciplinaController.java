@@ -54,6 +54,8 @@ public class DisciplinaController {
             Curso curso = cursoRepository.findById(dto.getCursoId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Curso não encontrado!"));
             disciplina.setCurso(curso);
+        } else {
+            disciplina.setCurso(null);
         }
 
         // Vincula professor se professorId for enviado
@@ -61,6 +63,8 @@ public class DisciplinaController {
             Professor professor = professorRepository.findById(dto.getProfessorId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Professor não encontrado!"));
             disciplina.setProfessor(professor);
+        } else {
+            disciplina.setProfessor(null);
         }
 
         Disciplina savedDisciplina = disciplinaRepository.save(disciplina);
@@ -114,7 +118,7 @@ public class DisciplinaController {
     }
 
     // Adicionar professor na disciplina
-    @PostMapping("/{id}/add-professor/{professorId}")
+    @PutMapping("/{id}/add-professor/{professorId}")
     public ResponseEntity<Disciplina> addProfessor(@PathVariable Integer id, @PathVariable Integer professorId) {
         Disciplina disciplina = this.disciplinaRepository.findById(id).
                 orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Id da disciplina não encontrado!"));

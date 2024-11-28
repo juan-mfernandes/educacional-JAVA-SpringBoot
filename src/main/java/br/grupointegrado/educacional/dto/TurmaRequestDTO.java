@@ -5,9 +5,6 @@ import jakarta.validation.constraints.NotNull;
 public class TurmaRequestDTO {
 
     @NotNull
-    private Integer id;
-
-    @NotNull
     private Integer anoLetivo;
 
     @NotNull
@@ -40,11 +37,4 @@ public class TurmaRequestDTO {
         this.anoLetivo = anoLetivo;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

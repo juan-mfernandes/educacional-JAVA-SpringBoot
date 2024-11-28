@@ -1,5 +1,7 @@
 package br.grupointegrado.educacional.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +20,7 @@ public class Turma {
 
     @ManyToOne()
     @JoinColumn(name = "curso_id", referencedColumnName = "id") // faz referência com o nome do campo "id" na tabela "cursos"
+    @JsonBackReference
     private Curso curso;
 
     public Integer getId() {
