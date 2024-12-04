@@ -1,6 +1,7 @@
 package br.grupointegrado.educacional.controllers;
 
-import br.grupointegrado.educacional.dto.RelatorioRequestDTO;
+import br.grupointegrado.educacional.dto.RelatorioDisciplinaRequestDTO;
+import br.grupointegrado.educacional.dto.RelatorioTurmaRequestDTO;
 import br.grupointegrado.educacional.services.RelatorioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,13 @@ public class MatriculaRelatorioController {
     private RelatorioService relatorioService;
 
     @GetMapping("/matricula/{idMatricula}/disciplinas/{idDisciplina}")
-    public ResponseEntity<List<RelatorioRequestDTO>> relatorioDisciplina(@PathVariable Integer idMatricula, @PathVariable Integer idDisciplina) {
+    public ResponseEntity<List<RelatorioDisciplinaRequestDTO>> relatorioDisciplina(@PathVariable Integer idMatricula, @PathVariable Integer idDisciplina) {
         return ResponseEntity.ok(relatorioService.relatorioDisciplina(idMatricula, idDisciplina));
+    }
+
+    @GetMapping("/turma/{id}")
+    public ResponseEntity<List<RelatorioTurmaRequestDTO>> relatorioTurma(@PathVariable Integer id) {
+        return ResponseEntity.ok(relatorioService.relatorioByTurma(id));
     }
 
 }

@@ -1,19 +1,12 @@
 package br.grupointegrado.educacional.dto;
 
 import br.grupointegrado.educacional.model.Aluno;
-import br.grupointegrado.educacional.model.Curso;
-import br.grupointegrado.educacional.model.Disciplina;
-import br.grupointegrado.educacional.model.Nota;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiFunction;
 
-public class RelatorioRequestDTO {
+public class RelatorioDisciplinaRequestDTO {
 
     @JsonIgnore
     private Integer matriculaId;
