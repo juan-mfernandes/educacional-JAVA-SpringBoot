@@ -33,19 +33,19 @@ public class NotaController {
 
     @PostMapping("/add/{idMatricula}/{idDisciplina}")
     public ResponseEntity<Nota> insertNota(@RequestBody NotaRequestDTO dto){
-        Matricula matricula = this.matriculaRepository.findById(dto.idMatricula()).
+        Matricula matricula = this.matriculaRepository.findById(dto.getIdMatricula()).
                 orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "O id da matrícula não foi encontrado!"));
 
-        Disciplina disciplina = this.disciplinaRepository.findById(dto.idDisciplina()).
+        Disciplina disciplina = this.disciplinaRepository.findById(dto.getIdDisciplina()).
                 orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "O id da disciplina não foi encontrado!") );
 
         Nota nota = new Nota();
-        if(dto.nota() == null || dto.nota().compareTo(BigDecimal.ZERO) < 0) {
+        if(dto.getNota() == null || dto.getNota().compareTo(BigDecimal.ZERO) < 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Insira uma nota válida!");
         }
         nota.setMatricula(matricula);
         nota.setDisciplina(disciplina);
-        nota.setNota(dto.nota());
+        nota.setNota(dto.getNota());
 
         LocalDate currentDate = LocalDate.now();
         nota.setDataLancamento(currentDate);
